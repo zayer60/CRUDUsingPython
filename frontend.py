@@ -1,5 +1,7 @@
 from tkinter import *
-import backend
+from backend import Database
+
+database = Database("students.db")
 
 
 def get_selected_row(event):
@@ -21,28 +23,28 @@ def get_selected_row(event):
 
 def view_all():
     list1.delete(0, END)
-    for row in backend.view():
+    for row in database.view():
         list1.insert(END, row)
 
 
 def search_text():
     list1.delete(0, END)
-    for row in backend.search(roll_value.get(), name_value.get(), dob_value.get(), gender_value.get()):
+    for row in database.search(roll_value.get(), name_value.get(), dob_value.get(), gender_value.get()):
         list1.insert(END, row)
 
 
 def add_values():
-    backend.insert(roll_value.get(), name_value.get(), dob_value.get(), gender_value.get())
+    database.insert(roll_value.get(), name_value.get(), dob_value.get(), gender_value.get())
     list1.delete(0, END)
     list1.insert(END, (roll_value.get(), name_value.get(), dob_value.get(), gender_value.get()))
 
 
 def delete_value():
-    backend.delete(selected_row[0])
+    database.delete(selected_row[0])
 
 
 def update_value():
-    backend.update(selected_row[0], roll_value.get(), name_value.get(), dob_value.get(), gender_value.get())
+    database.update(selected_row[0], roll_value.get(), name_value.get(), dob_value.get(), gender_value.get())
 
 
 window = Tk()
@@ -106,7 +108,7 @@ b4.grid(row=5, column=3)
 b5 = Button(window, text="Delete", width=12, command=delete_value)
 b5.grid(row=6, column=3)
 
-b6 = Button(window, text="Close", width=12,command=window.destroy)
+b6 = Button(window, text="Close", width=12, command=window.destroy)
 b6.grid(row=7, column=3)
 
 window.mainloop()
