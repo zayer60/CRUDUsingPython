@@ -54,8 +54,6 @@ def update(regid, roll, name, dob, gender):
 
 
 connect()
-# insert(102, "naveed", 121096, "male")
-# delete(1)
-update(3, 102, "akif", 121096, "male")
+
 print(view())
-print(search(name="ayaz"))
+
