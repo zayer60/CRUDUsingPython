@@ -3,17 +3,20 @@ import backend
 
 
 def get_selected_row(event):
-    global selected_row
-    index = list1.curselection()[0]  # returns  the index of each tuple in a list box
-    selected_row = list1.get(index)  # from the list get a specified tuple of a specified index
-    e1.delete(0, END)
-    e1.insert(END, selected_row[1])
-    e2.delete(0, END)
-    e2.insert(END, selected_row[2])
-    e3.delete(0, END)
-    e3.insert(END, selected_row[3])
-    e4.delete(0, END)
-    e4.insert(END, selected_row[4])
+    try:
+        global selected_row
+        index = list1.curselection()[0]  # returns  the index of each tuple in a list box
+        selected_row = list1.get(index)  # from the list get a specified tuple of a specified index
+        e1.delete(0, END)
+        e1.insert(END, selected_row[1])
+        e2.delete(0, END)
+        e2.insert(END, selected_row[2])
+        e3.delete(0, END)
+        e3.insert(END, selected_row[3])
+        e4.delete(0, END)
+        e4.insert(END, selected_row[4])
+    except IndexError:
+        pass
 
 
 def view_all():
