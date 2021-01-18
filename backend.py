@@ -55,11 +55,6 @@ class Database:
         with open('studentsdata.csv') as file:
             contents = csv.DictReader(file, delimiter=',')
             values = [(i['roll'], i['name'], i['dob'], i['gender']) for i in contents]
-            #values = []
-            #for row in contents:
-             #   value
-                # value = [row[0], row[1], row[2], row[3], row[4]]
-              #  values.append(row)
 
         cur = conn.cursor()
         cur.executemany("INSERT INTO student VALUES(NULL,?,?,?,?)", values)
@@ -75,6 +70,4 @@ class Database:
             contents.writerow([i[0] for i in cur.description])
             contents.writerows(cur)
 
-database=Database("students.db")
-database.insert_from_csv()
-print(database.view())
+
