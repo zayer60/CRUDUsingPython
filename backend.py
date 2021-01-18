@@ -57,7 +57,7 @@ class Database:
             values = [(i['roll'], i['name'], i['dob'], i['gender']) for i in contents]
 
         cur = conn.cursor()
-        cur.executemany("INSERT INTO student VALUES(NULL,?,?,?,?)", values)
+        cur.executemany("INSERT INTO student VALUES(NULL,?,?,?,?) ", values)
         conn.commit()
         conn.close()
 
@@ -69,5 +69,4 @@ class Database:
             contents = csv.writer(file)
             contents.writerow([i[0] for i in cur.description])
             contents.writerows(cur)
-
 
