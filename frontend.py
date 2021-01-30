@@ -27,10 +27,7 @@ def view_all():
         list1.insert(END, row)
 
 
-def view_from_csv():
-    list1.delete(0, END)
-    for row in database.show_from_csv():
-        list1.insert(END, row)
+
 
 
 
@@ -115,8 +112,6 @@ b4.grid(row=5, column=3)
 b5 = Button(window, text="Delete", width=12, command=delete_value)
 b5.grid(row=6, column=3)
 
-b7 = Button(window, text="update to .csv", width=12, command=view_from_csv)
-b7.grid(row=7, column=3)
 
 b6 = Button(window, text="Close", width=12, command=window.destroy)
 b6.grid(row=8, column=3)

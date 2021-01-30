@@ -8,7 +8,7 @@ class Database:
         conn = sqlite3.connect(db)
         cur = conn.cursor()
         cur.execute(
-            "CREATE TABLE IF NOT EXISTS student(regid INTEGER PRIMARY KEY,roll INTEGER,name TEXT,dob INTEGER,gender TEXT)")
+            "CREATE TABLE IF NOT EXISTS student(regid INTEGER PRIMARY KEY, roll INTEGER,name TEXT,dob DATE,gender TEXT)")
         conn.commit()
         conn.close()
 
@@ -50,23 +50,7 @@ class Database:
         conn.commit()
         conn.close()
 
-    def insert_from_csv(self):
-        conn = sqlite3.connect("students.db")
-        with open('studentsdata.csv') as file:
-            contents = csv.DictReader(file, delimiter=',')
-            values = [(i['roll'], i['name'], i['dob'], i['gender']) for i in contents]
 
-        cur = conn.cursor()
-        cur.executemany("INSERT INTO student VALUES(NULL,?,?,?,?) ", values)
-        conn.commit()
-        conn.close()
 
-    def show_from_csv(self):
-        conn = sqlite3.connect("students.db")
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM student")
-        with open('studentsdata.csv', 'w') as file:
-            contents = csv.writer(file)
-            contents.writerow([i[0] for i in cur.description])
-            contents.writerows(cur)
+
 
